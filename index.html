@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reCAPTCHA Test</title>
+    <!-- Подключаем скрипт Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тест reCAPTCHA на GitHub Pages</h1>
+    
+    <form id="captcha-form" onsubmit="return submitForm(event)">
+        <!-- Тут вставляем свой ключ сайта -->
+        <div class="g-recaptcha" data-sitekey="6Lf2xxQsAAAAAGQoRh0OWDk-qUMumdEJcM5R7SfB"></div>
+        <input type="submit" value="Отправить">
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        function submitForm(e) {
+            e.preventDefault();
+            const response = grecaptcha.getResponse();
+            const resultEl = document.getElementById('result');
+
+            if(response.length === 0)
